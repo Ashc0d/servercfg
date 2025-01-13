@@ -1,9 +1,7 @@
----
-- hosts: all
-  gather_facts: yes
-  become: yes
+--- 
+- name: Run roles
+  vars_files:
+    - test.config.yml
+  
   roles:
-    - role: update_machines
-    - role: ssh
-    - role: install_packages
-    
+  - role: update-packages
