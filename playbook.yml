@@ -4,7 +4,7 @@
   gather_facts: true
   become: true
   vars_files:
-    - config.yml
+    - config.yml # always use _ in naming variable instead of -
 
   vars_prompt:
     - name: reboot_confirmation
