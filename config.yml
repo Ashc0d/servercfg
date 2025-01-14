@@ -1,7 +1,9 @@
 ---
-apt-packages:
-  - vim
-  - tmux
+apt_packages:
+  - name: vim
+    state: present
+  - name: curl
+    state: present
+  - wget 
   - git
-  - wget
-  - curl
+
