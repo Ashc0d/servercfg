@@ -25,7 +25,7 @@ jobs:
   #        ansible-lint
     
   testruns: 
-    name: runs test
+    name: Run playbook test
     runs-on: ubuntu-latest
     steps:
       - name: checkout codebase
@@ -47,6 +47,6 @@ jobs:
         run: |
           idempotence=$(mktemp)
           ansible-playbook main.yml --connection=local -i localhost, -e reboot_confirmation=no | tee -a ${idempotence}
-          cat ${idempotence} | grep -q 'changed=2.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+          cat ${idempotence} | grep -q 'changed=1.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
         env:
           ANSIBLE_FORCE_COLOR: '1'

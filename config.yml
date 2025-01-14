@@ -1,0 +1,7 @@
+---
+apt-packages:
+  - vim
+  - tmux
+  - git
+  - wget
+  - curl
