@@ -1,25 +1,23 @@
---- 
+---
 - name: Run roles
   hosts: all
-  gather_facts: yes
-  become: yes
+  gather_facts: true
+  become: true
   vars_files:
     - test.config.yml
 
   vars_prompt:
     - name: reboot_confirmation
       prompt: "Do you want to reboot machines after upgrade? (yes/no)"
-      private: no
+      private: false
       default: no
 
-
   roles:
-  - role: update-packages
+    - role: update-packages
 
   tasks:
-  - name: reboot if allowed
-    reboot:
-      msg: "Rebooting machines by ansible playbook"
-      reboot_timeout: 3600
-    when: reboot_confirmation | lower == 'yes'
-
+    - name: Reboot if allowed
+      reboot:
+        msg: "Rebooting machines by Ansible playbook"
+        reboot_timeout: 3600
+      when: reboot_confirmation | lower == 'yes'
