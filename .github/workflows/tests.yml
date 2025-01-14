@@ -35,18 +35,18 @@ jobs:
         run: pip3 install ansible
 
       - name: checkout playbook syntax
-        run: ansible-playbook main.yml --connection=local -i localhost, --syntax-check
+        run: ansible-playbook playbook.yml --connection=local -i localhost, --syntax-check
 
       - name: run playbook
         run: |
-          ansible-playbook main.yml --connection=local -i localhost, -e reboot_confirmation=no
+          ansible-playbook playbook.yml --connection=local -i localhost, -e reboot_confirmation=no
         env:
           ANSIBLE_FORCE_COLOR: '1'     
 
       - name: Idempotence check.
         run: |
           idempotence=$(mktemp)
-          ansible-playbook main.yml --connection=local -i localhost, -e reboot_confirmation=no | tee -a ${idempotence}
+          ansible-playbook playbook.yml --connection=local -i localhost, -e reboot_confirmation=no | tee -a ${idempotence}
           cat ${idempotence} | grep -q 'changed=1.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
         env:
           ANSIBLE_FORCE_COLOR: '1'
