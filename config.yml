@@ -6,8 +6,8 @@ apt_packages:
     state: present
   - name: fail2ban
     state: present
-  - docker.io
-  - docker-compose
+  #- docker.io
+  #- docker-compose
   - htop
   - tree
   - wget 
