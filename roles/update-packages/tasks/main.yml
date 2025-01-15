@@ -1,16 +1,16 @@
 ---
 - name: Update packages index
+  tags: upgrade
   apt:
     update_cache: yes
     cache_valid_time: 3600
-  tags: upgrade
 
 - name: Upgrade packages
+  tags: upgrade
   apt:
     upgrade: yes
-  tags: upgrade
 
-- name: cleaning up apt packages
+- name: Cleaning up apt packages
   apt:
     clean: yes # Removes all cached package files
     autoremove: yes # Removes unused packages that were automatically installed as dependencies.

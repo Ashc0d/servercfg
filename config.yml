@@ -1,9 +1,20 @@
 ---
 apt_packages:
   - name: vim
-    state: present
+    state: present # absent, build-dep, latest, present (default), fixed
   - name: curl
     state: present
+  - name: fail2ban
+    state: present
+  - docker.io
+  - docker-compose
+  - htop
+  - tree
   - wget 
   - git
+
+services_state:
+  - name : fail2ban
+    state: started # "reloaded" "restarted" "started" "stopped"
+    enable: true # "false"
 

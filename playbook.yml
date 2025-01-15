@@ -22,3 +22,4 @@
         msg: "Rebooting machines by Ansible playbook"
         reboot_timeout: 3600
       when: reboot_confirmation | lower == 'yes'
+      notify: handle_services
