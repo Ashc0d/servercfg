@@ -1,0 +1,25 @@
+--- 
+- name: Secure SSH
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    validate: "sshd -t -f %s"
+  with_items:
+    - regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication no"
+    - regexp: "^PermitRootLogin"
+      line: "PermitRootLogin no"
+    - regexp: "^PubkeyAuthentication"
+      line: "PubkeyAuthentication yes"
+    - regexp: "^PermitEmptyPasswords"
+      line: "PermitEmptyPasswords no"
+  when: ansible_os_family == "Debian" 
+  notify: restart_ssh
+  
+- name: Remove cloud-init config file
+  file: 
+    path: /etc/ssh/sshd_config.d/50-cloud-init.conf
+    state: absent
+  notify: restart_ssh

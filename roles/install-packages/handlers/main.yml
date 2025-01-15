@@ -4,5 +4,5 @@
     name: "{{ item.name | default(item) }}"
     state: "{{ item.state | default('started') }}"
     enabled: "{{ item.enable | default('false') }}"
-  listen: "handle_services"
+  listen: handle_services
   loop: "{{  services_state  }}"
