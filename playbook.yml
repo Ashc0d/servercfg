@@ -15,7 +15,7 @@
   roles:
     - role: update-packages
     - role: install-packages
-    #- role: secure-ssh
+    - role: secure-ssh
 
   tasks:
     - name: Reboot if allowed
