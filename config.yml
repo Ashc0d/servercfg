@@ -6,15 +6,21 @@ apt_packages:
     state: present
   - name: fail2ban
     state: present
-  #- docker.io
-  #- docker-compose
   - htop
+  - ufw
   - tree
   - wget 
   - git
+  #- docker.io
+  #- docker-compose
+
 
 services_state:
   - name : fail2ban
+    state: started # "reloaded" "restarted" "started" "stopped"
+    enable: true # "false"
+
+  - name : ufw
     state: started # "reloaded" "restarted" "started" "stopped"
     enable: true # "false"
 
